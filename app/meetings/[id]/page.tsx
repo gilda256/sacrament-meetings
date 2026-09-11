@@ -2,7 +2,11 @@ import Link from 'next/link';
 import type { SacramentMeeting } from '@/lib/types';
 
 async function getMeeting(id: number): Promise<SacramentMeeting> {
-  const res = await fetch(`http://localhost:3000/api/meetings/${id}`, { cache: 'no-store' });
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : 'http://localhost:3000';
+  
+  const res = await fetch(`${baseUrl}/api/meetings/${id}`, { cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to fetch meeting');
   return res.json();
 }
