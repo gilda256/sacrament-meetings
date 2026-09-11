@@ -90,7 +90,24 @@ const meetings: SacramentMeeting[] = [
     ],
     closingHymn: { number: 31, title: 'O God, Our Help in Ages Past' },
     closingPrayer: 'Brother Davis'
-  }
+  },
+  {
+  id: 6,
+  date: '2026-09-06',
+  meetingType: 'regular',
+  presiding: 'Bishop Smith',
+  conducting: 'Brother Jones',
+  openingHymn: { number: 2, title: 'The Spirit of God' },
+  openingPrayer: 'Sister Williams',
+  wardBusiness: [],
+  stakeBusiness: false,
+  sacramentHymn: { number: 169, title: "In Remembrance of Thy Suffering" },
+  speakers: [
+    { name: 'Elder Johnson', topic: 'Faith', type: 'speaker' }
+  ],
+  closingHymn: { number: 31, title: 'O God, Our Help in Ages Past' },
+  closingPrayer: 'Brother Davis'
+}
 ];
 
 export function getMeetings(date?: string | null): SacramentMeeting[] {
