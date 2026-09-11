@@ -1,18 +1,8 @@
 import MeetingCard from '@/components/MeetingCard';
-import type { SacramentMeeting } from '@/lib/types';
-
-async function getMeetings(): Promise<SacramentMeeting[]> {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : 'http://localhost:3000';
-  
-  const res = await fetch(`${baseUrl}/api/meetings`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch meetings');
-  return res.json();
-}
+import { getMeetings } from '@/lib/meetings-db';
 
 export default async function MeetingsPage() {
-  const meetings = await getMeetings();
+  const meetings = getMeetings();
 
   return (
     <main className="p-8">

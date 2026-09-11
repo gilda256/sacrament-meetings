@@ -1,23 +1,23 @@
 import Link from 'next/link';
+import { getMeetingById } from '@/lib/meetings-db';
 import type { SacramentMeeting } from '@/lib/types';
-
-async function getMeeting(id: number): Promise<SacramentMeeting> {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : 'http://localhost:3000';
-  
-  const res = await fetch(`${baseUrl}/api/meetings/${id}`, { cache: 'no-store' });
-  if (!res.ok) throw new Error('Failed to fetch meeting');
-  return res.json();
-}
 
 export default async function MeetingPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const meeting = await getMeeting(parseInt(id));
+  const meeting = getMeetingById(parseInt(id));
+
+  if (!meeting) {
+    return (
+      <main className="p-8">
+        <Link href="/meetings" className="text-blue-600 hover:underline">← Back</Link>
+        <h1 className="text-2xl font-bold mt-4">Meeting not found</h1>
+      </main>
+    );
+  }
 
   return (
-    <main className="min-h-screen p-8 max-w-3xl mx-auto">
-      <Link href="/" className="text-blue-600 hover:underline mb-4 block">← Back to meetings</Link>
+    <main className="p-8 max-w-3xl mx-auto">
+      <Link href="/meetings" className="text-blue-600 hover:underline mb-4 block">← Back to meetings</Link>
       
       <h1 className="text-3xl font-bold mb-2">{meeting.date}</h1>
       <p className="text-gray-600 mb-6">{meeting.meetingType} meeting</p>
