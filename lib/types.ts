@@ -1,10 +1,5 @@
 export type MeetingType = 'testimony' | 'regular' | 'stake' | 'general';
 
-export interface Hymn {
-  number: number;
-  title: string;
-}
-
 export interface SpeakerItem {
   name: string;
   topic: string;
@@ -22,12 +17,15 @@ export interface SacramentMeeting {
   presiding: string;
   conducting: string;
   announcements?: string[];
-  openingHymn: Hymn;
-  openingPrayer: string;
-  wardBusiness: WardBusinessItem[];
-  stakeBusiness: boolean;
-  sacramentHymn: Hymn;
-  speakers: SpeakerItem[];
-  closingHymn: Hymn;
-  closingPrayer: string;
+  openingHymnNumber?: number;
+  openingHymnTitle?: string;
+  openingPrayer?: string;
+  wardBusiness?: WardBusinessItem[];
+  stakeBusiness?: boolean;
+  sacramentHymnNumber?: number;
+  sacramentHymnTitle?: string;
+  speakers?: SpeakerItem[];
+  closingHymnNumber?: number;
+  closingHymnTitle?: string;
+  closingPrayer?: string;
 }
