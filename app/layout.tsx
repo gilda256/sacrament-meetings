@@ -7,8 +7,18 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Sacrament Meeting Planner',
-  description: 'Plan and manage sacrament meeting agendas',
+  title: {
+    default: 'Sacrament Meeting Planner',
+    template: '%s | Sacrament Meeting Planner',
+  },
+  description:
+    'Plan and manage sacrament meeting agendas, assignments, and schedules.',
+  openGraph: {
+    title: 'Sacrament Meeting Planner',
+    description:
+      'Plan and manage sacrament meeting agendas, assignments, and schedules.',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
